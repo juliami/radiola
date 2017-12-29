@@ -2,6 +2,7 @@
 
 import React from 'react';
 import DownloadButton from './DownloadButton';
+import Result from './Result';
 
 class ResultList extends React.Component {
 
@@ -14,7 +15,7 @@ class ResultList extends React.Component {
     return (
         <div>
           <h1>See the results</h1>
-          <img src={this.props.coverUrl}/>
+          <Result cover={this.props.coverUrl} />
           <DownloadButton url={this.props.coverUrl} />
         </div>
     );

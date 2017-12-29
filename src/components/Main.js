@@ -3,7 +3,7 @@ require('styles/App.css');
 require('es6-promise').polyfill();
 
 import React from 'react';
-import SearchComponent from './pls/SearchComponent';
+import SearchComponent from './pls/Search/SearchComponent';
 
 
 class AppComponent extends React.Component {
