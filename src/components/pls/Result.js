@@ -2,6 +2,7 @@
 
 import React from 'react';
 import fetchJsonp from 'fetch-jsonp';
+import styles from './Result.css';
 
 
 const makeRequest = (artist, album) => {
@@ -34,10 +35,10 @@ class Result extends React.Component {
 
 
   render() {
-    return ( <div>
-        k
-        <img src={this.state.cover}/>
-      </div>
+    return (
+      <li className={styles.root}>
+        <img src={this.state.cover} className={styles.image}/>
+      </li>
 
     );
   }

@@ -1,0 +1,9 @@
+.list {
+  display: grid;
+  grid-template-columns: 20% 20% 20% 20% 20%;
+  grid-gap: 10px;
+  list-style-type: none;
+  padding: 0;
+  padding-top: 20px;
+  width: 100%;
+}

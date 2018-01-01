@@ -3,6 +3,10 @@
 import React from 'react';
 import DownloadButton from './DownloadButton';
 import Result from './Result';
+import styles from './ResultList.css';
+
+
+
 
 class ResultList extends React.Component {
 
@@ -23,9 +27,10 @@ class ResultList extends React.Component {
 
     return (
         <div>
-          <h1>See the results</h1>
+          <ul className={styles.list}>
           {results}
-          <DownloadButton url={this.props.coverUrl} />
+          </ul>
+
         </div>
     );
   }

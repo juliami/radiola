@@ -4,6 +4,8 @@ require('es6-promise').polyfill();
 
 import React from 'react';
 import SearchComponent from './pls/Search/SearchComponent';
+import Header from './pls/Header';
+import styles from './main.css';
 
 
 class AppComponent extends React.Component {
@@ -14,8 +16,11 @@ class AppComponent extends React.Component {
 
   render() {
     return (
-      <div className="index">
-        <SearchComponent/>
+      <div>
+        <Header />
+        <div className={styles.container}>
+          <SearchComponent/>
+        </div>
       </div>
     );
   }

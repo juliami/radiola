@@ -3,9 +3,7 @@
 import React from 'react';
 import ResultList from '../ResultList';
 import ParsePlaylist from './ParsePlaylist';
-
-require('styles/pls/Search.css');
-
+import styles from './Search.css';
 
 class SearchComponent extends React.Component {
 
@@ -25,22 +23,28 @@ class SearchComponent extends React.Component {
   }
 
   handleSubmit(event) {
-    const albums = ParsePlaylist(this.state.value);
-
     this.setState({albums: ParsePlaylist(this.state.value)});
-
     event.preventDefault();
   }
 
 
   render() {
     return (
-      <form onSubmit={this.handleSubmit}>
-        <textarea onChange={this.handleChange} width={'1500'} height={'1300'}>{this.state.value}</textarea>
-        <input type={'submit'}  />
-
-        <ResultList albums={this.state.albums} />
+      <div>
+      <form onSubmit={this.handleSubmit} className={styles.root}>
+        <label htmlFor={"sourceplaylist"} className={styles.label}>Paste your playlist:</label>
+        <textarea
+          onChange={this.handleChange}
+          className={styles.textarea}
+          id={"sourceplaylist"}
+          value={this.state.value} />
+        <input type={'submit'} className={styles.button} value={"Find cover art"} />
       </form>
+
+
+
+      <ResultList albums={this.state.albums} />
+      </div>
     );
   }
 }
