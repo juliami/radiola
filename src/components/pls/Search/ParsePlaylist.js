@@ -2,13 +2,18 @@ const getArtistName = (trackline) => {
   return trackline.split(' - ')[0].trim();
 };
 
+const getTrack = (trackline) => {
+  return trackline.split(' - ')[1].trim();
+};
+
 const explicitAlbumName = (trackline) => {
   const hasExplicitName = trackline.match(/\[([^)]+)\]/);
 
   if (hasExplicitName === null) {
     return hasExplicitName
   }
-  const albumName = trackline.match(/\[([^)]+)\]/)[1].replace(/#[\d]+/, '').trim();
+  const albumName = encodeURI(trackline.match(/\[([^)]+)\]/)[1].replace(/#[\d]+/, '').trim());
+
 
   return albumName;
 };
@@ -20,9 +25,18 @@ const ParsePlaylist = (string) => {
   var plsLength = tracks.length;
   for (var i = 0; i < plsLength; i++) {
     const strippedTrack =  tracks[i].replace(/^[\d.]+/, '');
-    albumsData.push({'artist': getArtistName(strippedTrack), 'name': explicitAlbumName(strippedTrack)})
+
+    if (explicitAlbumName(strippedTrack) !== null) {
+      console.log('not null');
+      albumsData.push({'artist': getArtistName(strippedTrack), 'name': explicitAlbumName(strippedTrack)})
+    }
+    else{
+      albumsData.push({'artist': getArtistName(strippedTrack), 'track': getTrack(strippedTrack)})
+    }
+
   }
 
+  console.log(albumsData);
   return albumsData;
 
 };

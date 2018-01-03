@@ -5,8 +5,19 @@ import fetchJsonp from 'fetch-jsonp';
 import styles from './Result.css';
 
 
-const makeRequest = (artist, album) => {
-  return `https://api.deezer.com/search?q=artist:'${artist}'&album:'${album}'&output=jsonp`
+const makeRequest = (album) => {
+
+  let request = `https://api.deezer.com/search?q=`;
+
+  Object.keys(album).forEach(function (key) {
+    let prop = `${key}:"${album[key]}"%20`;
+    request = request.concat(prop);
+    console.log(prop);
+  });
+
+  console.log('return')
+
+  return request.concat('&output=jsonp');
 };
 
 
@@ -21,7 +32,8 @@ class Result extends React.Component {
 
   componentDidMount() {
     const album = this.props.album;
-    fetchJsonp(makeRequest(album.artist, album.name))
+    console.log(makeRequest(album))
+    fetchJsonp(makeRequest(album))
       .then(function(response) {
         return response.json();
       })

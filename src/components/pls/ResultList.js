@@ -17,7 +17,6 @@ class ResultList extends React.Component {
 
   render() {
 
-
     const  results = [];
 
     var albumsCount = this.props.albums.length;
