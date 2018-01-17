@@ -1,0 +1,11 @@
+.button {
+  width: 100%;
+  display: block;
+  background: #e06667;
+  text-align: center;
+  text-decoration: none;
+  color: #810606;
+  font-weight: bold;
+  text-transform: uppercase;
+  padding: 10px;
+}

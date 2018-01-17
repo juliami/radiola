@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+import styles from './DownloadButton.css';
 
 class DownloadButton extends React.Component {
 
@@ -9,9 +10,11 @@ class DownloadButton extends React.Component {
   }
 
 
+
   render() {
+    console.log(this.props.albums);
     return (
-      <a href={this.props.url} download>Download</a>
+      <a className={styles.button} href="" download>Download</a>
     );
   }
 }

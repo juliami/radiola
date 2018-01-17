@@ -29,7 +29,7 @@ class ResultList extends React.Component {
           <ul className={styles.list}>
           {results}
           </ul>
-
+          <DownloadButton ablums={this.props.albums} />
         </div>
     );
   }

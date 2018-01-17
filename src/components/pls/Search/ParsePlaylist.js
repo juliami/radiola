@@ -1,3 +1,6 @@
+import _ from 'lodash'
+import { uniqBy } from 'lodash/array'
+
 const getArtistName = (trackline) => {
   return trackline.split(' - ')[0].trim();
 };
@@ -37,7 +40,9 @@ const ParsePlaylist = (string) => {
   }
 
   console.log(albumsData);
-  return albumsData;
+  console.log(_.uniqBy(albumsData, 'name'));
+  // return _.uniqBy(albumsData, 'name');
+  return (albumsData);
 
 };
 

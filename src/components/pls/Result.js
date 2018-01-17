@@ -40,6 +40,7 @@ class Result extends React.Component {
       .then(
         json => {
           this.setState({cover: json.data[0].album.cover_xl});
+          console.log(json.data[0].albumrecord_type);
         }
       )
       .catch(function(error) { console.log(error); });
