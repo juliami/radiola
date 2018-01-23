@@ -31,7 +31,7 @@ const ParsePlaylist = (string) => {
 
     if (explicitAlbumName(strippedTrack) !== null) {
       console.log('not null');
-      albumsData.push({'artist': getArtistName(strippedTrack), 'name': explicitAlbumName(strippedTrack)})
+      albumsData.push({'artist': getArtistName(strippedTrack), 'album': explicitAlbumName(strippedTrack)})
     }
     else{
       albumsData.push({'artist': getArtistName(strippedTrack), 'track': getTrack(strippedTrack)})
