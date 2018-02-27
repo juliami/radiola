@@ -12,15 +12,24 @@ class DownloadButton extends React.Component {
   }
 
 
+  albumCovers = [];
 
-  componentWillMount(){
-    console.log(this.albums);
+  componentDidUpdate(){
+    const albumCovers = [];
+    const albums = this.props.albums;
+    const albumCount = albums.length;
+    for (var i = 0; i < albumCount; i++) {
+      albumCovers.push(albums[i].cover_xl);
+    }
+    console.log(albumCovers);
+    this.albumCovers = albumCovers;
+
   }
 
 
   render() {
 
-    const filestackUrl = 'https://process.filestackapi.com/AusOqTZRqSIyOvnRX3OU1z/zip/[https://e-cdns-images.dzcdn.net/images/cover/03eed153711ec9a910804e6593de7b13/1000x1000-000000-80-0-0.jpg, https://e-cdns-images.dzcdn.net/images/cover/99f2f38a64c4ce5835c5bb9783469a02/1000x1000-000000-80-0-0.jpg]';
+    const filestackUrl = 'https://process.filestackapi.com/AusOqTZRqSIyOvnRX3OU1z/zip/[' + this.albumCovers.join() + ']';
 
     return (
       <a className={styles.button} href={filestackUrl}>Download</a>

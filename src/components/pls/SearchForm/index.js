@@ -15,7 +15,7 @@ class SearchForm extends React.Component {
   }
 
   handleSubmit(event) {
-    const parsedAlbums = ParsePlaylist(this.state.value)
+    const parsedAlbums = ParsePlaylist(this.state.value);
     this.props.addParsedAlbums(parsedAlbums);
     event.preventDefault();
     }

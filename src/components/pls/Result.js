@@ -15,7 +15,6 @@ class Result extends React.Component {
 
   render() {
     const album = this.props.album;
-    console.log(album);
     return (
       <li className={styles.root}>
         <img src={album.cover_xl} className={styles.image}/>
