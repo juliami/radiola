@@ -39,8 +39,8 @@ const ParsePlaylist = (string) => {
 
   }
 
-  console.log(albumsData);
-  console.log(_.uniqBy(albumsData, 'name'));
+  //console.log(albumsData);
+  // console.log(_.uniqBy(albumsData, 'name'));
   // return _.uniqBy(albumsData, 'name');
   return (albumsData);
 

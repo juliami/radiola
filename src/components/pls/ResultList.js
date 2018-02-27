@@ -1,12 +1,8 @@
 'use strict';
 
 import React from 'react';
-import DownloadButton from './DownloadButton';
 import Result from './Result';
 import styles from './ResultList.css';
-
-
-
 
 class ResultList extends React.Component {
 
@@ -18,19 +14,17 @@ class ResultList extends React.Component {
   render() {
 
     const  results = [];
+    const albums = this.props.albums;
 
-    var albumsCount = this.props.albums.length;
+    var albumsCount = albums.length;
     for (var i = 0; i < albumsCount; i++) {
-      results.push(<Result album={this.props.albums[i]}/>)
+      results.push(<Result album={albums[i]}/>)
     }
 
     return (
-        <div>
           <ul className={styles.list}>
-          {results}
+            {results}
           </ul>
-          <DownloadButton ablums={this.props.albums} />
-        </div>
     );
   }
 }

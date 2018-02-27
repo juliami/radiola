@@ -2,54 +2,74 @@
 
 import React from 'react';
 import ResultList from '../ResultList';
-import ParsePlaylist from './ParsePlaylist';
-import styles from './Search.css';
+import fetchJsonp from 'fetch-jsonp';
+import SearchForm from '../SearchForm'
+import DownloadButton from "../DownloadButton";
 
 class SearchComponent extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {value: '', albums: []};
+    this.state = {parsedAlbums: [], albumEntries: []};
 
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+  //  this.handleChange = this.handleChange.bind(this);
+  //  this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  addParsedAlbums = (albums) => {
+    this.setState({parsedAlbums: albums});
+    this.setState({albumEntries: []});
+    const parsedAlbums = this.state.parsedAlbums;
+    const albumsCount = parsedAlbums.length;
 
 
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
+    for (let i = 0; i < albumsCount; i++) {
+      const request = this.makeRequest(parsedAlbums[i]);
+      fetchJsonp(request)
+        .then(function(response) {
 
-  handleSubmit(event) {
-    this.setState({albums: ParsePlaylist(this.state.value)});
-    event.preventDefault();
-  }
+          return response.json();
+        })
+        .then(
+          json => {
+
+            let albumEntries = this.state.albumEntries;
+            albumEntries.push(json.data[0].album);
+            this.setState({albumEntries: albumEntries});
+          }
+        )
+        .catch(function(error) { console.log(error); });
+    }
+
+
+  };
+
+
+
+  makeRequest = (album) => {
+
+    let request = `https://api.deezer.com/search?q=`;
+
+    Object.keys(album).forEach(function (key) {
+      let prop = `${key}:"${album[key]}"%20`;
+      request = request.concat(prop);
+    });
+
+    return request.concat('&output=jsonp');
+  };
 
 
   render() {
     return (
       <div>
-      <form onSubmit={this.handleSubmit} className={styles.root}>
-        <label htmlFor={"sourceplaylist"} className={styles.label}>Paste your playlist:</label>
-        <textarea
-          onChange={this.handleChange}
-          className={styles.textarea}
-          id={"sourceplaylist"}
-          value={this.state.value} />
-        <input type={'submit'} className={styles.button} value={"Find cover art"} />
-      </form>
-
-
-
-      <ResultList albums={this.state.albums} />
+        <SearchForm addParsedAlbums={this.addParsedAlbums} />
+        <ResultList albums={this.state.albumEntries} />
+        <DownloadButton albums={this.state.albumEntries} />
       </div>
     );
   }
 }
-
-SearchComponent.displayName = 'PlsSearchComponent';
 
 // Uncomment properties you need
 // SearchComponent.propTypes = {};
