@@ -3,15 +3,11 @@
 import React from 'react';
 import styles from './Result.css';
 
-
-
 class Result extends React.Component {
 
   constructor(props) {
     super(props);
   }
-
-
 
   render() {
     const album = this.props.album;
@@ -22,6 +18,6 @@ class Result extends React.Component {
 
     );
   }
-};
+}
 
 export default Result;

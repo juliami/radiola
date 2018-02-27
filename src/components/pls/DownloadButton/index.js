@@ -18,10 +18,9 @@ class DownloadButton extends React.Component {
     const albumCovers = [];
     const albums = this.props.albums;
     const albumCount = albums.length;
-    for (var i = 0; i < albumCount; i++) {
+    for (let i = 0; i < albumCount; i++) {
       albumCovers.push(albums[i].cover_xl);
     }
-    console.log(albumCovers);
     this.albumCovers = albumCovers;
 
   }
