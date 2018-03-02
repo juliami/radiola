@@ -27,11 +27,21 @@ class ResultList extends React.Component {
         })
         .then(
           json => {
-            fetchedAlbums.push(json.data[0].album);
+            let album = json.data[0].album;
+            album.artist = parsedAlbums[i].artist;
+            fetchedAlbums.push(album);
             this.setState({fetchedAlbums: fetchedAlbums})
           }
         )
-        .catch(function(error) {});
+        .catch(function(error) {
+          console.log('nie znalezione');
+          console.log(parsedAlbums[i]);
+          fetchedAlbums.push({
+            title: parsedAlbums[i].album,
+            artist: parsedAlbums[i].artist,
+          });
+
+        });
     }
 
   }
@@ -44,8 +54,8 @@ class ResultList extends React.Component {
 
   }
   objectsSame = (x, y) => {
-    var objectsAreSame = true;
-    for(var propertyName in x) {
+    let objectsAreSame = true;
+    for(let propertyName in x) {
       if(x[propertyName] !== y[propertyName]) {
         objectsAreSame = false;
         break;

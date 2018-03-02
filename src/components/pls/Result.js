@@ -14,6 +14,7 @@ class Result extends React.Component {
     return (
       <li className={styles.root}>
         <img src={album.cover_xl} className={styles.image}/>
+        <div className={styles.albumDetails}>{album.artist} - {album.title}</div>
       </li>
 
     );
