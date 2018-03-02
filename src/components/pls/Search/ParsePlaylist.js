@@ -18,23 +18,34 @@ const explicitAlbumName = (trackline) => {
   return albumName;
 };
 
+const albumUnique = (artist, album, albumsData) => {
+  return albumsData.filter(function(item) {
+    return item.artist === artist && item.album === album;
+  }).length === 0;
+};
+
 const ParsePlaylist = (string) => {
   const albumsData = [];
   const tracks = string.match(/[^\r\n]+/g);
 
-  var plsLength = tracks.length;
-  for (var i = 0; i < plsLength; i++) {
+  let plsLength = tracks.length;
+  for (let i = 0; i < plsLength; i++) {
     const strippedTrack =  tracks[i].replace(/^[\d.]+/, '');
+    const artistName = getArtistName(strippedTrack);
 
     if (explicitAlbumName(strippedTrack) !== null) {
-      albumsData.push({'artist': getArtistName(strippedTrack), 'album': explicitAlbumName(strippedTrack)})
+      let albumName = explicitAlbumName(strippedTrack);
+
+      if (albumUnique(artistName, albumName, albumsData)){
+        albumsData.push({'artist': artistName, 'album': albumName})
+      }
     }
     else{
-      albumsData.push({'artist': getArtistName(strippedTrack), 'track': getTrack(strippedTrack)})
+      albumsData.push({'artist': artistName, 'track': getTrack(strippedTrack)})
     }
 
   }
-  return (albumsData);
+  return albumsData;
 
 };
 
