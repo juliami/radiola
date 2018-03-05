@@ -1,3 +1,16 @@
+.root {
+  position: relative;
+}
+
 .image {
   max-width: 100%;
+}
+
+.rootErrored {
+  background: black;
+}
+
+.errorMsg {
+  background: red;
+  color: #fff;
 }

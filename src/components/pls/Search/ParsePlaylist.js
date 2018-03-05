@@ -3,7 +3,7 @@ const getArtistName = (trackline) => {
 };
 
 const getTrack = (trackline) => {
-  return trackline.split(' - ')[1].trim();
+    return trackline.split(' - ')[1].trim();
 };
 
 const explicitAlbumName = (trackline) => {
@@ -12,7 +12,7 @@ const explicitAlbumName = (trackline) => {
   if (hasExplicitName === null) {
     return hasExplicitName
   }
-  const albumName = encodeURI(trackline.match(/\[([^)]+)\]/)[1].replace(/#[\d]+/, '').trim());
+  const albumName = encodeURI(trackline.match(/\[([^)]+)\]/)[1].replace(/#[\d]+/, '').replace(/CD[\d]+/, '').trim());
 
 
   return albumName;
@@ -29,8 +29,15 @@ const ParsePlaylist = (string) => {
   const tracks = string.match(/[^\r\n]+/g);
 
   let plsLength = tracks.length;
+
   for (let i = 0; i < plsLength; i++) {
     const strippedTrack =  tracks[i].replace(/^[\d.]+/, '');
+    console.log(strippedTrack.split(' - '));
+
+    if (strippedTrack.split(' - ').length == 1){
+      albumsData.push({'track': tracks[i], 'error': `Wrong format of track name`});
+      continue;
+    }
     const artistName = getArtistName(strippedTrack);
 
     if (explicitAlbumName(strippedTrack) !== null) {

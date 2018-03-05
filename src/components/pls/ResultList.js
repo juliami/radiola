@@ -34,11 +34,10 @@ class ResultList extends React.Component {
           }
         )
         .catch(function(error) {
-          console.log('nie znalezione');
-          console.log(parsedAlbums[i]);
           fetchedAlbums.push({
             title: parsedAlbums[i].album,
             artist: parsedAlbums[i].artist,
+            error: 'Album not found',
           });
 
         });
