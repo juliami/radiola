@@ -1,9 +1,9 @@
 const getArtistName = (trackline) => {
-  return trackline.split(' - ')[0].trim();
+  return  encodeURI(trackline.split(' - ')[0].trim());
 };
 
-const getTrack = (trackline) => {
-    return trackline.split(' - ')[1].trim();
+const getTrack = (trackline, selector=' - ') => {
+    return  encodeURI(trackline.split(selector)[1].trim());
 };
 
 const explicitAlbumName = (trackline) => {
@@ -18,40 +18,29 @@ const explicitAlbumName = (trackline) => {
   return albumName;
 };
 
-const albumUnique = (artist, album, albumsData) => {
-  return albumsData.filter(function(item) {
-    return item.artist === artist && item.album === album;
-  }).length === 0;
-};
 
 const ParsePlaylist = (string) => {
   const albumsData = [];
   const tracks = string.match(/[^\r\n]+/g);
 
-  let plsLength = tracks.length;
+  for (let track of tracks) {
+    const strippedTrack =  track.replace(/^[\d.]+/, '');
 
-  for (let i = 0; i < plsLength; i++) {
-    const strippedTrack =  tracks[i].replace(/^[\d.]+/, '');
-    console.log(strippedTrack.split(' - '));
-
-    if (strippedTrack.split(' - ').length == 1){
-      albumsData.push({'track': tracks[i], 'error': `Wrong format of track name`});
+    if (strippedTrack.split(' - ').length === 1){
+      albumsData.push({data: {'track': track}, 'error': `Wrong format of track name`});
       continue;
     }
     const artistName = getArtistName(strippedTrack);
 
     if (explicitAlbumName(strippedTrack) !== null) {
       let albumName = explicitAlbumName(strippedTrack);
-
-      if (albumUnique(artistName, albumName, albumsData)){
-        albumsData.push({'artist': artistName, 'album': albumName})
-      }
+      albumsData.push({data: {'artist': artistName, 'album': albumName, 'track': getTrack(strippedTrack,'] ')}})
     }
     else{
-      albumsData.push({'artist': artistName, 'track': getTrack(strippedTrack)})
+      albumsData.push({data: {'artist': artistName, 'track': getTrack(strippedTrack)}})
     }
-
   }
+ // console.log(albumsData);
   return albumsData;
 
 };

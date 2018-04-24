@@ -4,7 +4,7 @@ require('es6-promise').polyfill();
 
 import React from 'react';
 import SearchComponent from './pls/Search/SearchComponent';
-import Header from './pls/Header';
+import Header from './pls/Header/Header';
 import styles from './main.css';
 
 

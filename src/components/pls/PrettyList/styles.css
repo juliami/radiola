@@ -1,0 +1,22 @@
+.prettyList {
+  float: left;
+  width: 40%;
+}
+
+.label {
+  display: block;
+  margin: 5px 0;
+  font-size: 12px;
+}
+
+.textarea {
+  width: 100%;
+  min-height: 250px;
+  resize: none;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  background: #9c1818;
+  border-style: none;
+  color: #fff;
+}
