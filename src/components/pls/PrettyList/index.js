@@ -2,7 +2,6 @@
 
 import React from 'react';
 import styles from './styles.css';
-import {connect} from "react-redux";
 
 class PrettyList extends React.Component {
 
@@ -40,12 +39,4 @@ class PrettyList extends React.Component {
   }
 }
 
-// Map Redux state to component props
-const mapStateToProps = (state) => ({
-  albums: state.albums,
-});
-
-// Connected Component
-export default PrettyList = connect(
-  mapStateToProps,
-)(PrettyList)
+export default PrettyList;
