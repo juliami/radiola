@@ -1,6 +1,7 @@
 'use strict';
 
 import React from 'react';
+
 import ResultList from '../ResultList/ResultList';
 import PrettyList from '../PrettyList';
 import SearchForm from '../SearchForm'
@@ -20,7 +21,7 @@ class SearchComponent extends React.Component {
       <div>
         <SearchForm onParsePlaylist={this.props.onParsePlaylist}/>
         <PrettyList albums={this.props.albums} />
-        {/*<ResultList />*/}
+        <ResultList albums={this.props.albums} />
       </div>
     );
   }

@@ -21,7 +21,6 @@ const explicitAlbumName = (trackline) => {
 
 export const chopPlaylist = (string) => {
   const albumsData = [];
-  console.log(string);
   const tracks = string.match(/[^\r\n]+/g);
 
   for (let track of tracks) {

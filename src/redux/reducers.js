@@ -1,5 +1,8 @@
 // Reducer
-import { chopPlaylist } from "../utils/ParsePlaylist";
+import getCovers from "../utils/GetCovers";
+
+
+
 
 export function counter(state = { count: 0 }, action) {
   const count = state.count
@@ -11,11 +14,12 @@ export function counter(state = { count: 0 }, action) {
   }
 }
 
-export function parsePlaylist(state = { albums: [] }, action) {
+export function parsePlaylist(state = { albums: '' }, action) {
   switch (action.type) {
     case 'PARSE_PLAYLIST':
-      return { albums: chopPlaylist(action.unformattedInput) }
+      return { albums: getCovers(action.unformattedInput) }
     default:
       return state
   }
 }
+

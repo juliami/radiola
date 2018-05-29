@@ -7,7 +7,6 @@ class PrettyList extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = {value: ''};
   }
 
   render() {
@@ -17,9 +16,13 @@ class PrettyList extends React.Component {
 
     if (albums) {
       console.log('inside');
+      console.log(albums);
+
       const albumsCount = albums.length;
+      console.log(albumsCount);
 
       for (let i = 0; i < albumsCount; i++) {
+        console.log(decodeURI(albums[i].data.track));
         value += `${i + 1}. ${decodeURI(albums[i].data.artist)} - ${decodeURI(albums[i].data.track)}\n`;
       }
     }

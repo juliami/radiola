@@ -1,3 +1,5 @@
+import promiseMiddleware from 'redux-promise';
+
 export const increaseAction = {
   type: 'INCREASE',
 };

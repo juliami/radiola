@@ -6,16 +6,14 @@ import React from 'react';
 import SearchComponent from './pls/Search/SearchComponent';
 import Header from './pls/Header/Header';
 import styles from './main.css';
-import { createStore } from 'redux'
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
 import { parsePlaylist } from '../redux/reducers';
-import { Provider, connect } from 'react-redux'
-
-
-
-
+import { Provider } from 'react-redux'
 
 const store = createStore(
   parsePlaylist,
+  applyMiddleware(thunk),
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
