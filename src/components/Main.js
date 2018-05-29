@@ -10,11 +10,16 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import { parsePlaylist } from '../redux/reducers';
 import { Provider } from 'react-redux'
+import * as actions from '../redux/actions';
+import { reducer } from '../redux/reducers';
+
+
 
 const store = createStore(
-  parsePlaylist,
+  reducer,
+  { isLoading: false, isError: false, repositories: [] },
   applyMiddleware(thunk),
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+ // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
 
 

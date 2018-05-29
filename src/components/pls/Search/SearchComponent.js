@@ -6,7 +6,7 @@ import ResultList from '../ResultList/ResultList';
 import PrettyList from '../PrettyList';
 import SearchForm from '../SearchForm'
 import {connect} from "react-redux";
-import {parsePlaylist} from "../../../redux/actions";
+// import {parsePlaylist} from "../../../redux/actions";
 
 
 class SearchComponent extends React.Component {
@@ -36,7 +36,8 @@ const mapStateToProps = (state) => ({
 // Map Redux actions to component props
 function mapDispatchToProps(dispatch) {
   return {
-    onParsePlaylist: (content) => dispatch(parsePlaylist(content))
+    //onParsePlaylist: (content) => dispatch(parsePlaylist(content))
+    onParsePlaylist: () => dispatch( getData())
   }
 }
 
