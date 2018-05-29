@@ -7,12 +7,14 @@ const getTrack = (trackline, selector=' - ') => {
 };
 
 const explicitAlbumName = (trackline) => {
-  const hasExplicitName = trackline.match(/\[([^)]+)\]/);
-
+  const albumTitlePattern = /\[([\w\W]+)\]/;
+  const hasExplicitName = trackline.match(albumTitlePattern);
+  console.log(trackline);
+  console.log(hasExplicitName);
   if (hasExplicitName === null) {
     return hasExplicitName
   }
-  const albumName = encodeURI(trackline.match(/\[([^)]+)\]/)[1].replace(/#[\d]+/, '').replace(/CD[\d]+/, '').trim());
+  const albumName = encodeURI(trackline.match(albumTitlePattern)[1].replace(/#[\d]+/, '').replace(/CD[\d]+/, '').trim());
 
 
   return albumName;
