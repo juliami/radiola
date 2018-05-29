@@ -27,7 +27,7 @@ export const chopPlaylist = (string) => {
     const strippedTrack =  track.replace(/^[\d.]+/, '');
 
     if (strippedTrack.split(' - ').length === 1){
-      albumsData.push({data: {'track': track}, 'error': `Wrong format of track name`});
+      albumsData.push({data: {'track': track}, 'error': 'Wrong format of track name'});
       continue;
     }
     const artistName = getArtistName(strippedTrack);

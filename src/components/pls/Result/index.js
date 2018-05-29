@@ -13,17 +13,15 @@ class Result extends React.Component {
   render() {
     const album = this.props.album;
     // console.log(album);
-    const errored = album.status != 1;
-    const rootClass =  errored ? classnames(styles.root, styles.rootErrored) : styles.root;
-    const errorMsg = errored && <div className={styles.errorMsg}>{album.status}</div>;
+    const rootClass =  styles.root;
+   //  const errorMsg = errored && <div className={styles.errorMsg}>{album.status}</div>;
     return (
       <li className={rootClass}>
-        <img src={album.data.cover_xl} className={styles.image}/>
+        <img src={album.cover_xl} className={styles.image}/>
         <div className={styles.albumDetails}>
-          <div>Artist: {decodeURI(album.data.artist)}</div>
-          <div>Album: {decodeURI(album.data.title)}</div>
-          <div>Track: {decodeURI(album.data.track)}</div>
-        {errorMsg}
+          <div>Artist: {decodeURI(album.artist)}</div>
+          <div>Album: {decodeURI(album.title)}</div>
+          <div>Track: {decodeURI(album.track)}</div>
         </div>
       </li>
 

@@ -5,8 +5,8 @@ import React from 'react';
 import ResultList from '../ResultList/ResultList';
 import PrettyList from '../PrettyList';
 import SearchForm from '../SearchForm'
-import {connect} from "react-redux";
-// import {parsePlaylist} from "../../../redux/actions";
+import {connect} from 'react-redux';
+import {itemsFetchData} from '../../../redux/actions';
 
 
 class SearchComponent extends React.Component {
@@ -14,6 +14,7 @@ class SearchComponent extends React.Component {
   constructor(props) {
     super(props);
   }
+
 
 
   render() {
@@ -28,18 +29,21 @@ class SearchComponent extends React.Component {
 }
 
 
-// Map Redux state to component props
-const mapStateToProps = (state) => ({
-  albums: state.albums,
-});
 
-// Map Redux actions to component props
-function mapDispatchToProps(dispatch) {
+const mapStateToProps = (state) => {
   return {
-    //onParsePlaylist: (content) => dispatch(parsePlaylist(content))
-    onParsePlaylist: () => dispatch( getData())
-  }
-}
+    albums: state.items,
+    hasErrored: state.itemsHasErrored,
+    isLoading: state.itemsIsLoading
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onParsePlaylist: (content) => dispatch(itemsFetchData(content))
+  };
+};
+
 
 // Connected Component
 export default SearchComponent = connect(

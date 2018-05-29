@@ -15,15 +15,15 @@ class PrettyList extends React.Component {
     let value = '';
 
     if (albums) {
-      console.log('inside');
-      console.log(albums);
+      // console.log('inside');
+      // console.log(albums);
 
       const albumsCount = albums.length;
       console.log(albumsCount);
 
       for (let i = 0; i < albumsCount; i++) {
-        console.log(decodeURI(albums[i].data.track));
-        value += `${i + 1}. ${decodeURI(albums[i].data.artist)} - ${decodeURI(albums[i].data.track)}\n`;
+        console.log(decodeURI(albums[i].title));
+        value += `${i + 1}. ${decodeURI(albums[i].artist)} - ${decodeURI(albums[i].title)}\n`;
       }
     }
 
