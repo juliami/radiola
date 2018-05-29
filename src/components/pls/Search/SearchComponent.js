@@ -5,6 +5,9 @@ import ResultList from '../ResultList/ResultList';
 import PrettyList from '../PrettyList';
 import SearchForm from '../SearchForm'
 
+
+
+
 class SearchComponent extends React.Component {
 
   constructor(props) {
@@ -23,9 +26,8 @@ class SearchComponent extends React.Component {
   render() {
     return (
       <div>
-        <SearchForm addParsedAlbums={this.addParsedAlbums} />
-        <PrettyList albums={this.state.parsedAlbums}/>
-        <ResultList albums={this.state.parsedAlbums} />
+        <SearchForm />
+        <PrettyList />
       </div>
     );
   }

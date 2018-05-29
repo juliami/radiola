@@ -3,7 +3,7 @@ const getArtistName = (trackline) => {
 };
 
 const getTrack = (trackline, selector=' - ') => {
-    return  encodeURI(trackline.split(selector)[1].trim());
+  return  encodeURI(trackline.split(selector)[1].trim());
 };
 
 const explicitAlbumName = (trackline) => {
@@ -19,8 +19,9 @@ const explicitAlbumName = (trackline) => {
 };
 
 
-const ParsePlaylist = (string) => {
+export const chopPlaylist = (string) => {
   const albumsData = [];
+  console.log(string);
   const tracks = string.match(/[^\r\n]+/g);
 
   for (let track of tracks) {
@@ -43,5 +44,3 @@ const ParsePlaylist = (string) => {
   return albumsData;
 
 };
-
-export default ParsePlaylist;

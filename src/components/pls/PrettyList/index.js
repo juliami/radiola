@@ -2,7 +2,7 @@
 
 import React from 'react';
 import styles from './styles.css';
-
+import {connect} from "react-redux";
 
 class PrettyList extends React.Component {
 
@@ -14,12 +14,19 @@ class PrettyList extends React.Component {
   render() {
 
     const albums = this.props.albums;
-    const albumsCount = albums.length;
     let value = '';
 
-    for (let i = 0; i < albumsCount; i++) {
-      value += `${i + 1}. ${decodeURI(albums[i].data.artist)} - ${decodeURI(albums[i].data.track)}\n`;
+    if (albums) {
+      console.log('inside');
+      const albumsCount = albums.length;
+
+      for (let i = 0; i < albumsCount; i++) {
+        value += `${i + 1}. ${decodeURI(albums[i].data.artist)} - ${decodeURI(albums[i].data.track)}\n`;
+      }
     }
+
+
+
     return (
       <div className={styles.prettyList}>
         <label htmlFor={'sourceplaylist'} className={styles.label}>Pretty playlist:</label>
@@ -33,4 +40,12 @@ class PrettyList extends React.Component {
   }
 }
 
-export default PrettyList;
+// Map Redux state to component props
+const mapStateToProps = (state) => ({
+  albums: state.albums,
+});
+
+// Connected Component
+export default PrettyList = connect(
+  mapStateToProps,
+)(PrettyList)
