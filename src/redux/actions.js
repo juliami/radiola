@@ -1,7 +1,7 @@
 
 import fetchJsonp from 'fetch-jsonp';
-import { chopPlaylist } from "../utils/ParsePlaylist";
-import { makeRequestUrl } from "../utils/ApiRequest";
+import { chopPlaylist } from '../utils/ParsePlaylist';
+import { makeRequestUrl } from '../utils/ApiRequest';
 export const GET_DATA_REQUESTED = 'GET_DATA_REQUESTED';
 export const GET_DATA_DONE = 'GET_DATA_DONE';
 export const GET_DATA_FAILED = 'GET_DATA_FAILED';
@@ -101,7 +101,6 @@ export function itemsFetchData(content) {
 
     Promise.all(JSONPromises)
       .then((responsesArray) => {
-        console.log(responsesArray);
         for (let response of responsesArray) {
           if (!response.ok) {
             throw Error(response.statusText);
@@ -130,7 +129,7 @@ export function itemsFetchData(content) {
                   title: tracks[index].data.album ? tracks[index].data.album : ''
                 },
                 title: tracks[index].data.track,
-                cover_xl: 'Unknown',
+                cover_xl: 'Unknown'
               }
             )
           }
@@ -149,7 +148,7 @@ export function itemsFetchData(content) {
             artist: record.artist.name,
             title: record.album.title,
             track: record.title,
-            cover_xl: record.album.cover_xl,
+            cover_xl: record.album.cover_xl
           });
         }
         return items;
