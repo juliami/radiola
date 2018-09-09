@@ -80,8 +80,7 @@ const serialJsonRequest = (requestsArray) => {
   for (let request of requestsArray) {
     responses.push(fetchJsonp(request))
   }
-  console.log('lots of responses');
-  //console.log(responses);
+
   return responses;
 }
 
@@ -92,23 +91,17 @@ export function itemsFetchData(content) {
 
 
     const tracks = chopPlaylist(content);
-
     const requests = [];
     for (let track of tracks) {
       requests.push(makeRequestUrl(track));
     }
 
+   // console.log(requests);
     const JSONPromises = serialJsonRequest(requests);
-    console.log('JSONPromises');
-    console.log(JSONPromises);
-
 
     Promise.all(JSONPromises)
-   // fetchJsonp(request)
       .then((responsesArray) => {
-        //
-         console.log('serial response?');
-         console.log(responsesArray);
+        console.log(responsesArray);
         for (let response of responsesArray) {
           if (!response.ok) {
             throw Error(response.statusText);
@@ -122,35 +115,30 @@ export function itemsFetchData(content) {
         for (let record of responsesArray) {
           jsonedArray.push(record.json())
         }
-        console.log(jsonedArray);
         return Promise.all(jsonedArray)
       })
       .then((jsonedArray) => {
-        console.log('JSONED');
-
         const reducedArray = [];
-        for (let record of jsonedArray) {
-          if (record.total === 0){ // No record data on DEEZER
-            // @TODO: Add data from request
+        for (let [index, track] of jsonedArray.entries()) {
+          if (track.total === 0){ // No record data on DEEZER
             reducedArray.push(
               {
                 artist: {
-                  name: 'Unknown'
+                  name: tracks[index].data.artist
                 },
                 album: {
-                  title: 'Unknown'
+                  title: tracks[index].data.album ? tracks[index].data.album : ''
                 },
-                title: 'Unknown',
+                title: tracks[index].data.track,
                 cover_xl: 'Unknown',
               }
             )
           }
           else{
-            reducedArray.push(record.data[0])
+            reducedArray.push(track.data[0])
           }
         }
-        console.log('r e d u c e d');
-        console.log(reducedArray);
+
         return reducedArray
       })
       .then((reducedArray) => {
