@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-import ResultList from '../ResultList/ResultList';
+import Index from '../ResultList';
 import PrettyList from '../PrettyList';
 import SearchForm from '../SearchForm'
 import {connect} from 'react-redux';
@@ -22,7 +22,7 @@ class SearchComponent extends React.Component {
       <div>
         <SearchForm onParsePlaylist={this.props.onParsePlaylist}/>
         <PrettyList albums={this.props.albums} />
-        <ResultList albums={this.props.albums} />
+        <Index albums={this.props.albums} />
       </div>
     );
   }

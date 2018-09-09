@@ -4,9 +4,9 @@ import React from 'react';
 import Result from '../Result';
 import styles from './ResultList.css';
 
-import DownloadButton from '../DownloadButton';
+// import DownloadButton from '../DownloadButton';
 
-class ResultList extends React.Component {
+class Index extends React.Component {
   render() {
 
     const results = [];
@@ -38,4 +38,4 @@ class ResultList extends React.Component {
   }
 }
 
-export default ResultList;
+export default Index;

@@ -1,7 +1,6 @@
 'use strict';
 
 import React from 'react';
-import classnames from 'classnames';
 import styles from './Result.css';
 
 class Result extends React.Component {
